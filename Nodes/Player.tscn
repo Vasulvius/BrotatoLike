@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4dhjc23mxp1"]
+
+[ext_resource type="Texture2D" uid="uid://vuabscjd47jd" path="res://icon.svg" id="1_g2b3y"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_i4f7r"]
+[ext_resource type="PackedScene" uid="uid://cfnnnp563k87p" path="res://Nodes/Bullet.tscn" id="2_rvybq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8x0s"]
+size = Vector2(120, 120)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_in6dp"]
+radius = 384.47
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_i4f7r")
+BulletScene = ExtResource("2_rvybq")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_g2b3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j8x0s")
+
+[node name="CD_Shoot" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("CircleShape2D_in6dp")
+debug_color = Color(0.720929, 0.349771, 0.830467, 0.42)
+
+[connection signal="timeout" from="CD_Shoot" to="." method="Shoot"]
+[connection signal="body_entered" from="EnemyDetector" to="." method="OnBodyEntered"]

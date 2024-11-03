@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c85f5oaafgqjk"]
+
+[ext_resource type="PackedScene" uid="uid://d4dhjc23mxp1" path="res://Nodes/Player.tscn" id="1_e5i58"]
+[ext_resource type="PackedScene" uid="uid://c0xt7vi0pbdlo" path="res://Nodes/Enemy.tscn" id="2_emt7c"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_e5i58")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.4, 0.4)
+
+[node name="Ennemi" parent="." instance=ExtResource("2_emt7c")]
+position = Vector2(494, 243)
+
+[node name="Ennemi2" parent="." instance=ExtResource("2_emt7c")]
+position = Vector2(968, 355)
+
+[node name="Ennemi3" parent="." instance=ExtResource("2_emt7c")]
+position = Vector2(771, -339)

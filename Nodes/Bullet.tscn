@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfnnnp563k87p"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_h723b"]
+[ext_resource type="Texture2D" uid="uid://vuabscjd47jd" path="res://icon.svg" id="1_hpk6b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pje1u"]
+radius = 9.0
+
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_h723b")
+timer = NodePath("Timer")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_hpk6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pje1u")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="Destroy"]
